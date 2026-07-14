@@ -5,7 +5,12 @@ const fetch = require('node-fetch');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'x-perf-token', 'x-client-id', 'x-api-key', 'x-claude-key']
+}));
+app.options('*', cors());
 app.use(express.json());
 
 app.get('/', (req, res) => res.json({ status: 'ok', message: 'Ozon Proxy работает!' }));
