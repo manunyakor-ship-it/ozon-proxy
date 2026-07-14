@@ -24,7 +24,8 @@ app.post('/perf/token', async (req, res) => {
     const response = await fetch('https://performance.ozon.ru/api/client/token', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body: JSON.stringify({ client_id, client_secret, grant_type: 'client_credentials' })
+      body: JSON.stringify({ client_id, client_secret, grant_type: 'client_credentials' }),
+      redirect: 'follow'
     });
     const data = await response.json();
     res.json(data);
