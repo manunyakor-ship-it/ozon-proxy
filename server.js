@@ -12,7 +12,10 @@ app.use(cors({
 }));
 app.options('*', cors());
 app.use(express.json());
-
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.path}`);
+  next();
+});
 app.get('/', (req, res) => res.json({ status: 'ok', message: 'Ozon Proxy работает!' }));
 
 app.post('/perf/token', async (req, res) => {
